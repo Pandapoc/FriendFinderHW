@@ -10,8 +10,9 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
 
-const routes = require('./app/routing/apiRoutes')
-routes(app)
+require('./app/routing/apiRoutes')(app)
+require('./app/routing/htmlRoutes')(app)
+
 
 
 app.listen(PORT)

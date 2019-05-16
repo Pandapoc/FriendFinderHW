@@ -35,7 +35,7 @@
     <div>
         <h3>Question 1</h3>
         <h5>What are your thoughts on Racoons?</h5>
-        <select id="q1">
+        <select id="q2">
             <option value="" disabled selected>Pick an Option</option>
             <option value="1">1 (Trash Pandas)</option>
             <option value="2">2</option>
@@ -47,7 +47,7 @@
     <div>
         <h3>Question 1</h3>
         <h5>What are your thoughts on Red Pandas?</h5>
-        <select id="q1">
+        <select id="q3">
             <option value="" disabled selected>Pick an Option</option>
             <option value="1">1 (Strongly Dislike)</option>
             <option value="2">2</option>
@@ -59,7 +59,7 @@
     <div>
         <h3>Question 1</h3>
         <h5>What are your thoughts on Cats?</h5>
-        <select id="q1">
+        <select id="q4">
             <option value="" disabled selected>Pick an Option</option>
             <option value="1">1 (Not a Panda)</option>
             <option value="2">2</option>
@@ -71,7 +71,7 @@
     <div>
         <h3>Question 1</h3>
         <h5>What are your thoughts on Dogs?</h5>
-        <select id="q1">
+        <select id="q5">
             <option value="" disabled selected>Pick an Option</option>
             <option value="1">1 (If You Choose This You're VERY Wrong)</option>
             <option value="2">2</option>
@@ -83,7 +83,7 @@
     <div>
         <h3>Question 1</h3>
         <h5>What are your thoughts on Brown Bears?</h5>
-        <select id="q1">
+        <select id="q6">
             <option value="" disabled selected>Pick an Option</option>
             <option value="1">1 (Not a Panda)</option>
             <option value="2">2</option>
@@ -95,7 +95,7 @@
     <div>
         <h3>Question 1</h3>
         <h5>What are your thoughts on Pandas?</h5>
-        <select id="q1">
+        <select id="q7">
             <option value="" disabled selected>Pick an Option</option>
             <option value="1">1 (Strongly Dislike)</option>
             <option value="2">2</option>
@@ -107,7 +107,7 @@
     <div>
         <h3>Question 1</h3>
         <h5>What are your thoughts on Pandas?</h5>
-        <select id="q1">
+        <select id="q8">
             <option value="" disabled selected>Pick an Option</option>
             <option value="1">1 (Strongly Dislike)</option>
             <option value="2">2</option>
@@ -119,7 +119,7 @@
     <div>
         <h3>Question 1</h3>
         <h5>What are your thoughts on Pandas?</h5>
-        <select id="q1">
+        <select id="q9">
             <option value="" disabled selected>Pick an Option</option>
             <option value="1">1 (Strongly Dislike)</option>
             <option value="2">2</option>
@@ -131,7 +131,7 @@
     <div>
         <h3>Question 1</h3>
         <h5>What are your thoughts on Pandas?</h5>
-        <select id="q1">
+        <select id="q10">
             <option value="" disabled selected>Pick an Option</option>
             <option value="1">1 (Strongly Dislike)</option>
             <option value="2">2</option>
@@ -140,9 +140,36 @@
             <option value="5">5 (THEY'RE ADORABLE)</option>
         </select>
     </div>
+    <button id="submit">SuBmiT</button>
 
 </body>
 <script>
+    document.querySelector("#submit").addEventListener('click', e => {
+        if (!document.getElementById('userName').value || !document.getElementById('friendPhoto').value) {
+
+        } else if (document.getElementById('userName').value && document.getElementById('friendPhoto').value) {
+            let scores = []
+            for (let i = 1; i < 11; i++) {
+                scores.push(document.querySelector(`#q${i}`))
+            }
+            let newFriend = {
+                name: document.querySelector('#userName').value,
+                photo: document.querySelector('#friendPhoto').value,
+                scores: scores
+            }
+            fetch('/friends/api', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: document.querySelector('#userName').value,
+                    photo: document.querySelector('#friendPhoto').value,
+                    scores: scores
+                })
+            })
+        }
+    })
 </script>
 
 </html>
